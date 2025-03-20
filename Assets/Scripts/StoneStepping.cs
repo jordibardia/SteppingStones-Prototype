@@ -1,12 +1,17 @@
-using System.Net;
+using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 
 public class StoneStepping : MonoBehaviour
 {
-
     [SerializeField]
     GameObject player;
+
+    [SerializeField]
+    GameObject[] letterStonesPrefabs;
+
+    [SerializeField]
+    GameObject wordCanvas;
 
     [SerializeField]
     private float startX;
@@ -17,10 +22,19 @@ public class StoneStepping : MonoBehaviour
     [SerializeField]
     private float endY;
 
-    private string word = "PAN";
-    private int currInd = 0;
+    private string[] words = { "PAN", "ANT" };
 
-    // Update is called once per frame
+    private string word;
+    private GameObject currLetterStones;
+
+    private int currWordInd = 0;
+    private int currLetterInd = 0;
+
+    private void Start()
+    {
+        StartNewLevel();
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -30,27 +44,45 @@ public class StoneStepping : MonoBehaviour
 
             if (rayHit.collider)
             {
-                if (currInd == word.Length && rayHit.collider.gameObject.tag == "Grass")
+                if (currLetterInd == word.Length && rayHit.collider.gameObject.tag == "Grass")
                 {
                     player.transform.position = new Vector3(endX, endY, player.transform.position.z);
+                    currWordInd += 1;
+
+                    if (currWordInd < words.Length)
+                    {
+                        Destroy(currLetterStones);
+                        currLetterInd = 0;
+                        StartNewLevel();
+                    }
                 }
                 else
                 {
                     GameObject stone = rayHit.collider.gameObject;
                     char stoneText = stone.GetComponentInChildren<TextMeshProUGUI>().text[0];
 
-                    if (currInd < word.Length && stoneText == word[currInd])
+                    if (currLetterInd < word.Length && stoneText == word[currLetterInd])
                     {
                         player.transform.position = new Vector3(stone.transform.position.x, stone.transform.position.y + 1.0f, stone.transform.position.z);
-                        currInd += 1;
+                        currLetterInd += 1;
                     }
                     else
                     {
                         player.transform.position = new Vector3(startX, startY, player.transform.position.z);
-                        currInd = 0;
+                        currLetterInd = 0;
                     }
                 }
             }    
         }
+    }
+
+    private void StartNewLevel()
+    {
+        word = words[currWordInd];
+        wordCanvas.GetComponentInChildren<TextMeshProUGUI>().text = word;
+
+        currLetterStones = Instantiate(letterStonesPrefabs[currWordInd]);
+
+        player.transform.position = new Vector3(startX, startY, player.transform.position.z);
     }
 }
