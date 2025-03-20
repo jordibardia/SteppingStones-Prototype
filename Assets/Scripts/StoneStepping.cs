@@ -47,7 +47,7 @@ public class StoneStepping : MonoBehaviour
                 if (currLetterInd == word.Length && rayHit.collider.gameObject.tag == "Grass")
                 {
                     player.transform.position = new Vector3(endX, endY, player.transform.position.z);
-                    currWordInd += 1;
+                    currWordInd = (currWordInd + 1) % words.Length;
 
                     if (currWordInd < words.Length)
                     {

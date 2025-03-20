@@ -200,8 +200,8 @@ Transform:
   m_GameObject: {fileID: 32228248}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.173, y: 0.1453, z: 0}
-  m_LocalScale: {x: 12.567684, y: 14.32019, z: 1}
+  m_LocalPosition: {x: -12.9514, y: 0.1453, z: 0}
+  m_LocalScale: {x: 13.011324, y: 14.32019, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -231,7 +231,7 @@ Transform:
   m_GameObject: {fileID: 332680878}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.1, y: 0, z: 0}
+  m_LocalPosition: {x: -7.25, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -580,7 +580,7 @@ MonoBehaviour:
   - {fileID: 6943100367025068065, guid: 4cdaf36c3750a3c42a9d13d4ac2f7cec, type: 3}
   - {fileID: 7754048551772251019, guid: e662e7b4f82b99244be3e9db529fb711, type: 3}
   wordCanvas: {fileID: 1144065513}
-  startX: -8.1
+  startX: -7.25
   startY: 0
   endX: 7.65
   endY: 0
