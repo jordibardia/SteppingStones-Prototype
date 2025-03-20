@@ -41,7 +41,7 @@ public class StoneStepping : MonoBehaviour
 
                     if (currInd < word.Length && stoneText == word[currInd])
                     {
-                        player.transform.position = stone.transform.position;
+                        player.transform.position = new Vector3(stone.transform.position.x, stone.transform.position.y + 1.0f, stone.transform.position.z);
                         currInd += 1;
                     }
                     else
